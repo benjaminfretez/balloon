@@ -13,6 +13,17 @@ CV_RegisterVar({
 	string = "Off"
 })
 
+-- Add the 'ballooncolor' cvar
+CV_RegisterVar({
+	name = "ballooncolor",
+	defaultvalue = "Red",
+	PossibleValue= {
+		string1="Red",
+		string2="Green"
+	}
+	string = "Red"
+})
+
 -- Add the 'balloonadd' command
 COM_AddCommand('balloonadd', function(player)
 	local object = _G[string.upper("mt_balloon")]
