@@ -46,7 +46,7 @@ Just a Lua script that adds a functionality to SRB2 that creates a balloon in yo
 
 ## **Links**
 
-SRB2MB Release: [not yet, **soon**]
+Release Thread: [not yet]
 
 Discord: https://discord.gg/FgZYVKwTN4
 
