@@ -40,7 +40,6 @@ Just a Lua script that adds a functionality to SRB2 that creates a balloon in yo
 
 * Add key customization (right now is q)
 * Maybe balloon color selection idk...
-* Make irreversible hurts actually irreversible (rn if you have enough patience it comes back to normal)
 
 ---
 
