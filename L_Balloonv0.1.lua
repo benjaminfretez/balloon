@@ -32,6 +32,7 @@ COM_AddCommand('balloonadd', function(player)
 	
 	if player.mo and player.mo.valid then
 		local balloon = P_SpawnMobj(player.mo.x, player.mo.y, player.mo.z, object)
+		balloon.color = R_GetColorByName(CV_FindVar("ballooncolor").string)
 		if CV_FindVar("balloondebug").string == "On" then
 			CONS_Printf(player, "Úballoon spawned")
 			CONS_Printf(player, player.mo.x/FRACUNIT, player.mo.y/FRACUNIT, player.mo.z/FRACUNIT)
@@ -60,13 +61,8 @@ end)
 	When I connect in netgames the balloons are seen in the color predefined.
 	I don;t like that
  ]]
- addHook("MobjSpawn", function(mobj)
-	if CV_FindVar("ballooncolor").string == "Green" then
-		mobj.color = SKINCOLOR_GREEN
-	elseif CV_FindVar("ballooncolor").string == "Blue" then
-		mobj.color = SKINCOLOR_BLUE
-	else -- Default is red
-		mobj.color = SKINCOLOR_RED
-	end
-	return true
- end, MT_BALLOON)
+ --[[ addHook("MobjSpawn", function(mobj) -- mobj is the balloon just spawned
+	-- better way to cover colors
+	mobj.color = R_GetColorByName(CV_FindVar("ballooncolor").string)
+	return true 
+ en-d, MT_BALLOON) ]]--
