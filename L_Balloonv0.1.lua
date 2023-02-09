@@ -13,6 +13,8 @@ CV_RegisterVar({
 	string = "Off"
 })
 
+local ballooncolor5
+local lastcolor
 
 -- Add the 'ballooncolor' cvar
 CV_RegisterVar({
@@ -23,16 +25,24 @@ CV_RegisterVar({
 		Green = 2,
 		Blue = 3
 	},
-	string = "Red"
+	string = "Red",
+	flags = CV_CALL,
+	func = function(bcolor)
+		lastcolor = R_GetColorByName(bcolor.string)
+		ballooncolor5 = lastcolor
+	end
 })
 
 -- Add the 'balloonadd' command
 COM_AddCommand('balloonadd', function(player)
 	local object = _G["MT_BALLOON"]
-	
+	print(ballooncolor5)
+
 	if player.mo and player.mo.valid then
-		local balloon = P_SpawnMobj(player.mo.x, player.mo.y, player.mo.z, object)
-		balloon.color = R_GetColorByName(CV_FindVar("ballooncolor").string)
+		player.balloon = P_SpawnMobj(player.mo.x, player.mo.y, player.mo.z, object)
+		if ballooncolor5 != nil then
+			player.balloon.color = ballooncolor5
+		end
 		if CV_FindVar("balloondebug").string == "On" then
 			CONS_Printf(player, "Úballoon spawned")
 			CONS_Printf(player, player.mo.x/FRACUNIT, player.mo.y/FRACUNIT, player.mo.z/FRACUNIT)
@@ -66,3 +76,7 @@ end)
 	mobj.color = R_GetColorByName(CV_FindVar("ballooncolor").string)
 	return true 
  en-d, MT_BALLOON) ]]--
+
+ addHook("NetVars", function(network)
+	lastcolor = network($)
+ end)
