@@ -1,4 +1,4 @@
-# Balloon mode
+# Balloon mode (A concept for now...)
 
 ![Sonic falling into a balloon](media/balloonlua2.png)
 
